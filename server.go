@@ -9,6 +9,16 @@ import (
 	"strings"
 )
 
+var imageContentTypes = map[string]string{
+	".png":  "image/png",
+	".jpg":  "image/jpeg",
+	".jpeg": "image/jpeg",
+	".gif":  "image/gif",
+	".svg":  "image/svg+xml",
+	".webp": "image/webp",
+	".ico":  "image/x-icon",
+}
+
 func makeHandler(cfg *Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" {
@@ -111,6 +121,21 @@ func serveIndex(w http.ResponseWriter, r *http.Request, cfg *Config) {
 	renderIndex(w, cfg.Dir, root, count, cfg.Watch)
 }
 
+func resolveServedPath(cfg *Config, name string) (string, error) {
+	absBase, err := filepath.Abs(cfg.Dir)
+	if err != nil {
+		return "", err
+	}
+
+	fullPath := filepath.Join(absBase, filepath.FromSlash(name))
+
+	if !strings.HasPrefix(fullPath, absBase+string(filepath.Separator)) {
+		return "", os.ErrPermission
+	}
+
+	return fullPath, nil
+}
+
 func serveMarkdown(w http.ResponseWriter, r *http.Request, cfg *Config) {
 	name := strings.TrimPrefix(r.URL.Path, "/")
 
@@ -119,21 +144,23 @@ func serveMarkdown(w http.ResponseWriter, r *http.Request, cfg *Config) {
 		return
 	}
 
-	if strings.ToLower(filepath.Ext(name)) != ".md" {
+	ext := strings.ToLower(filepath.Ext(name))
+	if ext != ".md" {
+		if contentType, ok := imageContentTypes[ext]; ok {
+			serveImage(w, cfg, name, contentType)
+			return
+		}
 		http.Error(w, "only .md files are served", http.StatusNotFound)
 		return
 	}
 
-	absBase, err := filepath.Abs(cfg.Dir)
+	fullPath, err := resolveServedPath(cfg, name)
 	if err != nil {
+		if err == os.ErrPermission {
+			http.Error(w, "invalid path", http.StatusBadRequest)
+			return
+		}
 		http.Error(w, "server error", http.StatusInternalServerError)
-		return
-	}
-
-	fullPath := filepath.Join(absBase, filepath.FromSlash(name))
-
-	if !strings.HasPrefix(fullPath, absBase+string(filepath.Separator)) {
-		http.Error(w, "invalid path", http.StatusBadRequest)
 		return
 	}
 
@@ -157,4 +184,29 @@ func serveMarkdown(w http.ResponseWriter, r *http.Request, cfg *Config) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	renderDocument(w, name, html, fi.ModTime().Format("2006-01-02 15:04:05"), cfg.Watch)
+}
+
+func serveImage(w http.ResponseWriter, cfg *Config, name, contentType string) {
+	fullPath, err := resolveServedPath(cfg, name)
+	if err != nil {
+		if err == os.ErrPermission {
+			http.Error(w, "invalid path", http.StatusBadRequest)
+			return
+		}
+		http.Error(w, "server error", http.StatusInternalServerError)
+		return
+	}
+
+	data, err := os.ReadFile(fullPath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			http.Error(w, "file not found: "+name, http.StatusNotFound)
+			return
+		}
+		http.Error(w, "cannot read file", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", contentType)
+	_, _ = w.Write(data)
 }

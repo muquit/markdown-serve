@@ -29,6 +29,8 @@ developer/personal tool, not a production web server.
 - Syntax highlighting via `highlight.js` (CDN)
 - GitHub-flavored Markdown extensions: tables, strikethrough, task lists,
   fenced code blocks, auto-heading IDs
+- Images referenced from Markdown (`.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`,
+  `.webp`, `.ico`) are served alongside the rendered page
 - Optional `--watch` flag: live reload via SSE when `.md` files change on disk
 
 ## CLI Usage
@@ -77,11 +79,14 @@ markdown-serve/
 | Route      | Description                                      |
 |------------|--------------------------------------------------|
 | `GET /`    | Lists all `.md` files in the served directory   |
-| `GET /:file` | Renders the named `.md` file as HTML           |
+| `GET /:file.md` | Renders the named `.md` file as HTML       |
+| `GET /:file.{png,jpg,jpeg,gif,svg,webp,ico}` | Serves the named image file as a static asset |
 
 - Return `404` with a clear message if a file is not found
 - Return `400` if the path attempts directory traversal (`..`)
-- Only serve files with `.md` extension; reject all others
+- Only serve `.md` files and common image files referenced from them
+  (`.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp`, `.ico`); reject all
+  other extensions
 
 ## Rendering
 
