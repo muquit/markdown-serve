@@ -1,3 +1,6 @@
+
+The prompt for Claude Code for implementation.
+
 # markdown-serve
 
 A lightweight Go web server that serves a directory of Markdown files as

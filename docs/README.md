@@ -1,23 +1,36 @@
 # Introduction
 
-`markdown-serve` is a simple command line web server that serves a directory of Markdown files as browsable HTML. Just point it at a directory, it lists the `.md` files as a collapsible tree, and renders them in the browser when clicked. 
+`markdown-serve` is a cross-platform command-line web server that serves a directory of Markdown files as browsable HTML. Just point it at a directory, it lists the `.md` files as a collapsible tree, and renders them in the browser when clicked. 
 
-I prefer to use `vim` in a terminal to write Markdown files instead of @VSCODE@ and like to see how the output is rendered from anywhere when editing files remotely over @TAILSCALE@. The server watches for file changes by default and reloads the browser automatically via Server-Sent Events.
+I prefer `vi/vim` in a terminal over @VSCODE@ adns such for writing Markdown, and 
+like to see how the output is rendered in the browser.  The server watches 
+for file changes by default and reloads the browser automatically via @SERVER_SENT_EVENTS@. 
+
+I find it much more pleasurable to work that way. Hope you find it useful as well.
+
+Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
+
 
 # Features
 
 - Lists `.md` files as a collapsible tree (directories and files)
-- Renders Markdown as clean HTML with a readable layout
-- Syntax highlighting via HIGHLIGHTJS loaded from CDN
+- Renders Markdown as clean HTML
+- Syntax highlighting via @HIGHLIGHTJS@ loaded from CDN
 - GitHub-flavored Markdown extensions: tables, strikethrough, task lists, fenced code blocks, auto-heading IDs
-- Live reload via Server-Sent Events when files change on disk (on by default)
+- Live reload via @SERVER_SENT_EVENTS@ when files change on disk (on by default)
 - Recursive directory support with empty directory pruning
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
 
-# Requirements
+# Accessing Home Network from anywhere
 
-- Go 1.22 or later
+Whenever needed, I run the markdown-serve on a machine at home and
+access it from anywhere over @TAILSCALE@ using a browser to see how the
+Markdown is rendered as HTML. As long as both devices are on
+the same @TAILSCALE@ network, it just works. Browse and edit Markdown
+files remotely as if I were sitting at home.
+
+@[:markdown](tailscale.md)
 
 # Installation
 
@@ -30,9 +43,12 @@ brew install markdown-serve
 
 ## Download binary
 
-Download a pre-built binary for your platform from MARKDOWN_SERVE_RELEASES.
+Download a pre-built binaries for your platform from @MARKDOWN_SERVE_RELEASES@
+page.
 
 ## Build from source
+
+Make sure @GO@ is installed. Look at @MAKEFILE@.
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
@@ -40,10 +56,20 @@ cd markdown-serve
 make
 ```
 
-# Usage
+# Synopsis
 
 ```
-markdown-serve [options] [directory]
+➤ markdown-serve -h
+Usage of markdown-serve:
+  -host string
+    	Host to bind to (default "0.0.0.0")
+  -port int
+    	Port to listen on (default 8485)
+  -version
+    	Print version and exit
+  -watch
+    	Reload browser on file changes (default true)
+
 ```
 
 If no directory is given, the current directory is used.
@@ -86,7 +112,7 @@ markdown-serve -version
 
 # Live Reload
 
-When `-watch` is enabled (the default), the server uses FSNOTIFY to watch the served directory tree for changes. When a `.md` file is written, the browser reloads automatically via a Server-Sent Events connection at `/events`. No WebSocket or external tooling is needed.
+When `-watch` is enabled (the default), the server uses @FSNOTIFY@ to watch the served directory tree for changes. When a `.md` file is written, the browser reloads automatically via a @SERVER_SENT_EVENTS@ connection at `/events`. No WebSocket or external tooling is needed.
 
 To disable live reload:
 ```
@@ -95,7 +121,7 @@ markdown-serve -watch=false
 
 # Building from source
 
-A Makefile is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
+A @MAKEFILE@ is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
 
 ```
 make          # build the binary
@@ -105,11 +131,11 @@ make docs     # regenerate README.md from docs/README.md
 
 # Dependencies
 
-- GOMARKDOWN for Markdown rendering
-- FSNOTIFY for filesystem change detection
-- HIGHLIGHTJS loaded from CDN for syntax highlighting at render time
+- @GOMARKDOWN@ for rendering Markdown as HTML
+- @FSNOTIFY@ for filesystem change detection
+- @HIGHLIGHTJS@ loaded from CDN for syntax highlighting at render time
 
-The project uses the Go standard library for HTTP serving and has no other runtime dependencies.
+The project uses the @GO@ standard library for HTTP serving.
 
 # License
 

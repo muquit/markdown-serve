@@ -1,12 +1,12 @@
 # Table Of Contents
 - [Introduction](#introduction)
 - [Features](#features)
-- [Requirements](#requirements)
+- [Accessing Home Network from anywhere](#accessing-home-network-from-anywhere)
 - [Installation](#installation)
   - [Homebrew (macOS and Linux)](#homebrew-macos-and-linux)
   - [Download binary](#download-binary)
   - [Build from source](#build-from-source)
-- [Usage](#usage)
+- [Synopsis](#synopsis)
   - [Options](#options)
   - [Examples](#examples)
 - [Live Reload](#live-reload)
@@ -17,24 +17,46 @@
 
 # Introduction
 
-`markdown-serve` is a simple command line web server that serves a directory of Markdown files as browsable HTML. Just point it at a directory, it lists the `.md` files as a collapsible tree, and renders them in the browser when clicked. 
+`markdown-serve` is a cross-platform command-line web server that serves a directory of Markdown files as browsable HTML. Just point it at a directory, it lists the `.md` files as a collapsible tree, and renders them in the browser when clicked. 
 
-I prefer to use `vim` in a terminal to write Markdown files instead of [vscode](https://code.visualstudio.com/) and like to see how the output is rendered from anywhere when editing files remotely over [Tailscale](https://tailscale.com/). The server watches for file changes by default and reloads the browser automatically via Server-Sent Events.
+I prefer `vi/vim` in a terminal over [VS Code](https://code.visualstudio.com/) adns such for writing Markdown, and 
+like to see how the output is rendered in the browser.  The server watches 
+for file changes by default and reloads the browser automatically via [Server-sent events](https://en.wikipedia.org/wiki/Server-sent_events). 
+
+I find it much more pleasurable to work that way. Hope you find it useful as well.
+
+Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
+
 
 # Features
 
 - Lists `.md` files as a collapsible tree (directories and files)
-- Renders Markdown as clean HTML with a readable layout
-- Syntax highlighting via HIGHLIGHTJS loaded from CDN
+- Renders Markdown as clean HTML
+- Syntax highlighting via [highlight.js](https://highlightjs.org) loaded from CDN
 - GitHub-flavored Markdown extensions: tables, strikethrough, task lists, fenced code blocks, auto-heading IDs
-- Live reload via Server-Sent Events when files change on disk (on by default)
+- Live reload via [Server-sent events](https://en.wikipedia.org/wiki/Server-sent_events) when files change on disk (on by default)
 - Recursive directory support with empty directory pruning
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
 
-# Requirements
+# Accessing Home Network from anywhere
 
-- Go 1.22 or later
+Whenever needed, I run the markdown-serve on a machine at home and
+access it from anywhere over [Tailscale](https://tailscale.com/) using a browser to see how the
+Markdown is rendered as HTML. As long as both devices are on
+the same [Tailscale](https://tailscale.com/) network, it just works. Browse and edit Markdown
+files remotely as if I were sitting at home.
+
+
+[Tailscale](https://tailscale.com/) is a zero-config VPN built on [WireGuard](https://www.wireguard.com/) that creates a secure,
+end-to-end encrypted mesh network between devices. Unlike traditional
+VPNs that route all traffic through a central server, [Tailscale](https://tailscale.com/) connects
+devices directly to each other (peer-to-peer) whenever possible, which
+makes it extremely fast with minimal latency. There is nothing to
+configure: no port forwarding, no dynamic DNS, no firewall rules.
+
+Note: I am not affiliated with [Tailscale](https://tailscale.com/) in any way, just a satisfied user.
+
 
 # Installation
 
@@ -47,9 +69,12 @@ brew install markdown-serve
 
 ## Download binary
 
-Download a pre-built binary for your platform from MARKDOWN_SERVE_RELEASES.
+Download a pre-built binaries for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
+page.
 
 ## Build from source
+
+Make sure [go](https://go.dev/) is installed. Look at [Makefile](Makefile).
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
@@ -57,10 +82,20 @@ cd markdown-serve
 make
 ```
 
-# Usage
+# Synopsis
 
 ```
-markdown-serve [options] [directory]
+➤ markdown-serve -h
+Usage of markdown-serve:
+  -host string
+    	Host to bind to (default "0.0.0.0")
+  -port int
+    	Port to listen on (default 8485)
+  -version
+    	Print version and exit
+  -watch
+    	Reload browser on file changes (default true)
+
 ```
 
 If no directory is given, the current directory is used.
@@ -103,7 +138,7 @@ markdown-serve -version
 
 # Live Reload
 
-When `-watch` is enabled (the default), the server uses FSNOTIFY to watch the served directory tree for changes. When a `.md` file is written, the browser reloads automatically via a Server-Sent Events connection at `/events`. No WebSocket or external tooling is needed.
+When `-watch` is enabled (the default), the server uses [github.com/fsnotify/fsnotify](https://github.com/fsnotify/fsnotify) to watch the served directory tree for changes. When a `.md` file is written, the browser reloads automatically via a [Server-sent events](https://en.wikipedia.org/wiki/Server-sent_events) connection at `/events`. No WebSocket or external tooling is needed.
 
 To disable live reload:
 ```
@@ -112,7 +147,7 @@ markdown-serve -watch=false
 
 # Building from source
 
-A Makefile is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
+A [Makefile](Makefile) is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
 
 ```
 make          # build the binary
@@ -122,11 +157,11 @@ make docs     # regenerate README.md from docs/README.md
 
 # Dependencies
 
-- GOMARKDOWN for Markdown rendering
-- FSNOTIFY for filesystem change detection
-- HIGHLIGHTJS loaded from CDN for syntax highlighting at render time
+- [github.com/gomarkdown/markdown](https://github.com/gomarkdown/markdown) for rendering Markdown as HTML
+- [github.com/fsnotify/fsnotify](https://github.com/fsnotify/fsnotify) for filesystem change detection
+- [highlight.js](https://highlightjs.org) loaded from CDN for syntax highlighting at render time
 
-The project uses the Go standard library for HTTP serving and has no other runtime dependencies.
+The project uses the [go](https://go.dev/) standard library for HTTP serving.
 
 # License
 
@@ -138,4 +173,4 @@ Built with [Claude Code](https://claude.ai/code). Look at [CLAUDE.md](CLAUDE.md)
 
 
 ---
-<sub>TOC is created by https://github.com/muquit/markdown-toc-go on Jun-16-2026</sub>
+<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-21-2026</sub>

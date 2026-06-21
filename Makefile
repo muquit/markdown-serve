@@ -14,4 +14,5 @@ docs:
         -o ./README.md --glossary docs/glossary.txt -f
 
 clean:
+	rm -rf ./bin
 	rm -f $(BINARY)
