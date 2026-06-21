@@ -1,14 +1,18 @@
 # Table Of Contents
 - [Introduction](#introduction)
 - [Features](#features)
-- [Accessing Home Network from anywhere](#accessing-home-network-from-anywhere)
 - [Installation](#installation)
-  - [Homebrew (macOS and Linux)](#homebrew-macos-and-linux)
-  - [Download binary](#download-binary)
+  - [Installing using Homebrew on Mac/Linux](#installing-using-homebrew-on-mac-linux)
+    - [Install](#install)
+    - [Upgrade](#upgrade)
+    - [Uninstall](#uninstall)
+    - [Remove the tap](#remove-the-tap)
+  - [Download pre-compiled binaries](#download-pre-compiled-binaries)
   - [Build from source](#build-from-source)
 - [Synopsis](#synopsis)
   - [Options](#options)
   - [Examples](#examples)
+- [Accessing Home Network from anywhere](#accessing-home-network-from-anywhere)
 - [Live Reload](#live-reload)
 - [Building from source](#building-from-source)
 - [Dependencies](#dependencies)
@@ -39,35 +43,45 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
 
-# Accessing Home Network from anywhere
-
-Whenever needed, I run the markdown-serve on a machine at home and
-access it from anywhere over [Tailscale](https://tailscale.com/) using a browser to see how the
-Markdown is rendered as HTML. As long as both devices are on
-the same [Tailscale](https://tailscale.com/) network, it just works. Browse and edit Markdown
-files remotely as if I were sitting at home.
-
-
-[Tailscale](https://tailscale.com/) is a zero-config VPN built on [WireGuard](https://www.wireguard.com/) that creates a secure,
-end-to-end encrypted mesh network between devices. Unlike traditional
-VPNs that route all traffic through a central server, [Tailscale](https://tailscale.com/) connects
-devices directly to each other (peer-to-peer) whenever possible, which
-makes it extremely fast with minimal latency. There is nothing to
-configure: no port forwarding, no dynamic DNS, no firewall rules.
-
-Note: I am not affiliated with [Tailscale](https://tailscale.com/) in any way, just a satisfied user.
-
 
 # Installation
 
-## Homebrew (macOS and Linux)
+## Installing using Homebrew on Mac/Linux
+
+You will need to install [Homebrew](https://brew.sh/) first.
+
+### Install
+
+First install the custom tap.
 
 ```
-brew tap muquit/markdown-serve
+brew tap muquit/markdown-serve https://github.com/muquit/markdown-serve.git
 brew install markdown-serve
 ```
 
-## Download binary
+Or tap and install in one command:
+```
+brew install muquit/markdown-serve/markdown-serve
+```
+
+### Upgrade
+```
+brew upgrade markdown-serve
+```
+
+### Uninstall
+```
+brew uninstall markdown-serve
+```
+
+### Remove the tap
+```
+brew untap muquit/markdown-serve
+```
+
+
+
+## Download pre-compiled binaries
 
 Download a pre-built binaries for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
 page.
@@ -135,6 +149,24 @@ Print version:
 ```
 markdown-serve -version
 ```
+# Accessing Home Network from anywhere
+
+Whenever needed, I run the markdown-serve on a machine at home and
+access it from anywhere over [Tailscale](https://tailscale.com/) using a browser to see how the
+Markdown is rendered as HTML. As long as both devices are on
+the same [Tailscale](https://tailscale.com/) network, it just works. Browse and edit Markdown
+files remotely as if I were sitting at home.
+
+
+[Tailscale](https://tailscale.com/) is a zero-config VPN built on [WireGuard](https://www.wireguard.com/) that creates a secure,
+end-to-end encrypted mesh network between devices. Unlike traditional
+VPNs that route all traffic through a central server, [Tailscale](https://tailscale.com/) connects
+devices directly to each other (peer-to-peer) whenever possible, which
+makes it extremely fast with minimal latency. There is nothing to
+configure: no port forwarding, no dynamic DNS, no firewall rules.
+
+Note: I am not affiliated with [Tailscale](https://tailscale.com/) in any way, just a satisfied user.
+
 
 # Live Reload
 
@@ -169,7 +201,8 @@ MIT
 
 # Author
 
-Built with [Claude Code](https://claude.ai/code). Look at [CLAUDE.md](CLAUDE.md) for the prompt.
+Built with [Claude Code](https://code.claude.com/docs/en/overview). Look at [CLAUDE.md](CLAUDE.md) for the prompt used
+for implementation.
 
 
 ---

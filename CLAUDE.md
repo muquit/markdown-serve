@@ -1,3 +1,4 @@
+# CLAUDE.md
 
 The prompt for Claude Code for implementation.
 
@@ -6,24 +7,24 @@ The prompt for Claude Code for implementation.
 A lightweight Go web server that serves a directory of Markdown files as
 browsable HTML.
 
-## Project Overview
+# Project Overview
 
 `markdown-serve` takes a directory path as an argument, lists all `.md` files
 in that directory, and renders them as HTML when clicked. It is a local
 developer/personal tool, not a production web server.
 
-## Repository
+# Repository
 
 `github.com/muquit/markdown-serve`
 
-## Tech Stack
+# Tech Stack
 
 - **Language**: Go (latest stable)
 - **Markdown library**: `github.com/gomarkdown/markdown`
 - **HTTP**: Go standard library `net/http`
 - **No frameworks**: keep dependencies minimal
 
-## Features
+# Features
 
 - Accept a directory path as a CLI argument (default: current directory)
 - List all `.md` files in the directory on the index page
@@ -36,7 +37,7 @@ developer/personal tool, not a production web server.
   `.webp`, `.ico`) are served alongside the rendered page
 - Optional `--watch` flag: live reload via SSE when `.md` files change on disk
 
-## CLI Usage
+# CLI Usage
 
 ```
 markdown-serve [options] [directory]
@@ -55,7 +56,7 @@ Examples:
   markdown-serve -port 9090 ~/notes
 ```
 
-## Project Structure
+# Project Structure
 
 ```
 markdown-serve/
@@ -69,7 +70,7 @@ markdown-serve/
 └── CLAUDE.md
 ```
 
-## Code Style
+# Code Style
 
 - Standard `gofmt` formatting (K&R-style braces, tabs for indentation)
 - Explicit `return` statements always
@@ -77,7 +78,7 @@ markdown-serve/
 - No global mutable state; pass config struct to handlers
 - All handlers use `http.HandlerFunc` signature
 
-## HTTP Routes
+# HTTP Routes
 
 | Route      | Description                                      |
 |------------|--------------------------------------------------|
@@ -91,7 +92,7 @@ markdown-serve/
   (`.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp`, `.ico`); reject all
   other extensions
 
-## Rendering
+# Rendering
 
 - Use `github.com/gomarkdown/markdown` with `parser.CommonExtensions | parser.AutoHeadingIDs`
 - Renderer flags: `html.CommonFlags | html.HrefTargetBlank`
@@ -101,7 +102,7 @@ markdown-serve/
   - `highlight.js` from CDN for code syntax highlighting
   - A navigation link back to the index (`← Back`)
 
-## Index Page
+# Index Page
 
 - Show the directory path at the top
 - List `.md` files sorted alphabetically
@@ -109,20 +110,20 @@ markdown-serve/
 - Show file count at the bottom
 - Simple clean styling, no JavaScript required
 
-## Build & Release
+# Build & Release
 
 - Build with `go build -o markdown-serve .`
 - Use `go-xbuild-go` for cross-platform releases
 - Homebrew formula generated via `go-xbuild-go`
 
-## Security Note
+# Security Note
 
 The server binds to `0.0.0.0` by default to allow remote access (e.g., accessing
 markdown files from outside the local network). Use `-host 127.0.0.1` to restrict
 to localhost only. Since this serves local files, ensure the machine's firewall
 restricts access as needed.
 
-## Dependencies
+# Dependencies
 
 ```
 github.com/gomarkdown/markdown
@@ -131,7 +132,7 @@ github.com/fsnotify/fsnotify
 
 `highlight.js` loaded from CDN at render time.
 
-## Non-Goals
+# Non-Goals
 
 - No file upload
 - No editing

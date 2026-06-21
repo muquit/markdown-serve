@@ -22,26 +22,13 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
 
-# Accessing Home Network from anywhere
-
-Whenever needed, I run the markdown-serve on a machine at home and
-access it from anywhere over @TAILSCALE@ using a browser to see how the
-Markdown is rendered as HTML. As long as both devices are on
-the same @TAILSCALE@ network, it just works. Browse and edit Markdown
-files remotely as if I were sitting at home.
-
-@[:markdown](tailscale.md)
 
 # Installation
 
-## Homebrew (macOS and Linux)
+@[:markdown](brew_install.md)
 
-```
-brew tap muquit/markdown-serve
-brew install markdown-serve
-```
 
-## Download binary
+## Download pre-compiled binaries
 
 Download a pre-built binaries for your platform from @MARKDOWN_SERVE_RELEASES@
 page.
@@ -109,6 +96,15 @@ Print version:
 ```
 markdown-serve -version
 ```
+# Accessing Home Network from anywhere
+
+Whenever needed, I run the markdown-serve on a machine at home and
+access it from anywhere over @TAILSCALE@ using a browser to see how the
+Markdown is rendered as HTML. As long as both devices are on
+the same @TAILSCALE@ network, it just works. Browse and edit Markdown
+files remotely as if I were sitting at home.
+
+@[:markdown](tailscale.md)
 
 # Live Reload
 
@@ -143,5 +139,6 @@ MIT
 
 # Author
 
-Built with @CLAUDE_CODE@. Look at [CLAUDE.md](CLAUDE.md) for the prompt.
+Built with @CLAUDE_CODE@. Look at [CLAUDE.md](CLAUDE.md) for the prompt used
+for implementation.
 
