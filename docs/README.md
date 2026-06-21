@@ -30,7 +30,7 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 
 ## Download pre-compiled binaries
 
-Download a pre-built binaries for your platform from @MARKDOWN_SERVE_RELEASES@
+Download a pre-built binary for your platform from @MARKDOWN_SERVE_RELEASES@
 page.
 
 ## Build from source

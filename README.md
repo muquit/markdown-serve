@@ -83,7 +83,7 @@ brew untap muquit/markdown-serve
 
 ## Download pre-compiled binaries
 
-Download a pre-built binaries for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
+Download a pre-built binary for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
 page.
 
 ## Build from source
