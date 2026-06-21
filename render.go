@@ -10,7 +10,7 @@ func renderMarkdown(src []byte) []byte {
 	extensions := parser.CommonExtensions | parser.AutoHeadingIDs
 	p := parser.NewWithExtensions(extensions)
 
-	flags := html.CommonFlags | html.HrefTargetBlank
+	flags := html.UseXHTML | html.HrefTargetBlank
 	opts := html.RendererOptions{Flags: flags}
 	renderer := html.NewRenderer(opts)
 
