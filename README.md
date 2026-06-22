@@ -1,10 +1,10 @@
 # Table Of Contents
 - [Introduction](#introduction)
-- [Latest Version (v1.0.1)](#latest-version-v1-0-1)
+- [Latest Version (v1.0.1)](#latest-version-v101)
 - [Features](#features)
 - [Installation](#installation)
   - [Download pre-compiled binaries](#download-pre-compiled-binaries)
-  - [Installing using Homebrew on Mac/Linux](#installing-using-homebrew-on-mac-linux)
+  - [Installing using Homebrew on Mac/Linux](#installing-using-homebrew-on-maclinux)
     - [Install](#install)
     - [Upgrade](#upgrade)
     - [Uninstall](#uninstall)
@@ -65,15 +65,19 @@ You will need to install [Homebrew](https://brew.sh/) first.
 
 ### Install
 
-First install the custom tap.
+First install the custom tap, then trust it. Homebrew 6.0+ refuses to load
+formulae from third-party taps until they are explicitly trusted.
 
 ```
 brew tap muquit/markdown-serve https://github.com/muquit/markdown-serve.git
+brew trust muquit/markdown-serve
 brew install markdown-serve
 ```
 
-Or tap and install in one command:
+Or tap, trust and install in one go:
 ```
+brew tap muquit/markdown-serve https://github.com/muquit/markdown-serve.git
+brew trust muquit/markdown-serve
 brew install muquit/markdown-serve/markdown-serve
 ```
 
@@ -179,6 +183,7 @@ starting a new instance, they look for an already running
 `markdown-serve` process, print what it was serving, kill it, and then
 start the new one in its place.
 
+
 ## Usage
 
 The scripts accept the same options and directory argument as `markdown-serve`. Copy them somewhere in your PATH.
@@ -202,6 +207,9 @@ Starting: /Users/muquit/bin/markdown-serve -port 8485 /Users/muquit/notes
 `mdsr` is short for mark**d**own **s**erve **r**estart. Easier to type than the
 full name when running it often.
 
+**NOTE: By default, the scripts looks for markdown-serve and markdown-serve.exe in
+Linux/macOS and Windows respectively.**
+
 The scripts locate `markdown-serve` on `PATH`. To point at a binary
 that isn't on `PATH`, set the `MARKDOWN_SERVE_BIN` environment variable.
 Both scripts respect it:
@@ -219,7 +227,7 @@ mdsr.ps1 C:\notes
 
 # Accessing Home Network from anywhere
 
-Whenever needed, I run the markdown-serve on a machine at home and
+Whenever needed, I run  `markdown-serve` on a machine at home and
 access it from anywhere over [Tailscale](https://tailscale.com/) using a browser to see how the
 Markdown is rendered as HTML. As long as both devices are on
 the same [Tailscale](https://tailscale.com/) network, it just works. Browse and edit Markdown
@@ -266,4 +274,4 @@ for implementation.
 
 
 ---
-<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-21-2026</sub>
+<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-22-2026</sub>

@@ -14,6 +14,7 @@ starting a new instance, they look for an already running
 `markdown-serve` process, print what it was serving, kill it, and then
 start the new one in its place.
 
+
 ## Usage
 
 The scripts accept the same options and directory argument as `markdown-serve`. Copy them somewhere in your PATH.
@@ -36,6 +37,9 @@ Starting: /Users/muquit/bin/markdown-serve -port 8485 /Users/muquit/notes
 
 `mdsr` is short for mark**d**own **s**erve **r**estart. Easier to type than the
 full name when running it often.
+
+**NOTE: By default, the scripts looks for markdown-serve and markdown-serve.exe in
+Linux/macOS and Windows respectively.**
 
 The scripts locate `markdown-serve` on `PATH`. To point at a binary
 that isn't on `PATH`, set the `MARKDOWN_SERVE_BIN` environment variable.
