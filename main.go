@@ -11,10 +11,11 @@ import (
 var version = "dev" // overridden at build time via -ldflags
 
 type Config struct {
-	Host  string
-	Port  int
-	Dir   string
-	Watch bool
+	Host    string
+	Port    int
+	Dir     string
+	Watch   bool
+	Version string
 }
 
 func main() {
@@ -43,10 +44,11 @@ func main() {
 	}
 
 	cfg := &Config{
-		Host:  *host,
-		Port:  *port,
-		Dir:   dir,
-		Watch: *watch,
+		Host:    *host,
+		Port:    *port,
+		Dir:     dir,
+		Watch:   *watch,
+		Version: version,
 	}
 
 	addr := fmt.Sprintf("%s:%d", cfg.Host, cfg.Port)

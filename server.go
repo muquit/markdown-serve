@@ -183,7 +183,7 @@ func serveMarkdown(w http.ResponseWriter, r *http.Request, cfg *Config) {
 	html := renderMarkdown(data)
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	renderDocument(w, name, html, fi.ModTime().Format("2006-01-02 15:04:05"), cfg.Watch)
+	renderDocument(w, name, html, fi.ModTime().Format("2006-01-02 15:04:05"), cfg.Watch, cfg.Version)
 }
 
 func serveImage(w http.ResponseWriter, cfg *Config, name, contentType string) {

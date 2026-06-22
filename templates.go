@@ -78,7 +78,7 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <nav><a href="/">&#8592; Back</a><span class="modtime">Last modified: {{ .ModTime }}</span></nav>
+  <nav><a href="/">&#8592; Back</a><span class="modtime">{{ if .Version }}Rendered by markdown-serve {{ .Version }} &middot; {{ end }}Last modified: {{ .ModTime }}</span></nav>
   {{ .Body }}
   {{if .Watch}}<script>
 const es = new EventSource('/events');
@@ -106,18 +106,20 @@ func renderIndex(w io.Writer, dir string, root *TreeNode, count int, watch bool)
 	}
 }
 
-func renderDocument(w io.Writer, title string, body []byte, modTime string, watch bool) {
+func renderDocument(w io.Writer, title string, body []byte, modTime string, watch bool, version string) {
 	display := strings.TrimSuffix(title, ".md")
 	data := struct {
 		Title   string
 		Body    template.HTML
 		ModTime string
 		Watch   bool
+		Version string
 	}{
 		Title:   display,
 		Body:    template.HTML(body),
 		ModTime: modTime,
 		Watch:   watch,
+		Version: version,
 	}
 	if err := docTmpl.Execute(w, data); err != nil {
 		fmt.Fprintf(w, "template error: %v", err)
