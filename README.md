@@ -269,7 +269,7 @@ MIT. Look at [LICENSE.txt](LICENSE.txt) for details.
 
 # Author
 
-Built with [Claude Code](https://code.claude.com/docs/en/overview). Look at [CLAUDE.md](CLAUDE.md) for the prompt used
+Built with the help from [Claude Code](https://code.claude.com/docs/en/overview). Look at [CLAUDE.md](CLAUDE.md) for the prompt used
 for implementation.
 
 
