@@ -13,7 +13,7 @@
 - [Synopsis](#synopsis)
   - [Options](#options)
   - [Examples](#examples)
-- [Helper CLIs](#helper-clis)
+- [Helper CLIs (mdsr.sh and mdsr.ps1)](#helper-clis-mdsrsh-and-mdsrps1)
   - [Usage](#usage)
 - [Accessing Home Network from anywhere](#accessing-home-network-from-anywhere)
   - [Tailscale](#tailscale)
@@ -167,12 +167,12 @@ Print version:
 markdown-serve -version
 ```
 
-# Helper CLIs
+# Helper CLIs (mdsr.sh and mdsr.ps1)
 
 `markdown-serve` doesn't track whether another instance is already
 running. Start a second one on the same port and it just fails with
-`address already in use`. To avoid having to manually find and kill a
-stale process before starting a new one, two small wrapper scripts are
+`address already in use`. To avoid having to manually find and kill the
+running process before starting a new one, two small wrapper scripts are
 included:
 
 - `mdsr.sh` for macOS/Linux
@@ -183,6 +183,8 @@ starting a new instance, they look for an already running
 `markdown-serve` process, print what it was serving, kill it, and then
 start the new one in its place.
 
+**NOTE:** By default, the scripts looks for `markdown-serve` and `markdown-serve.exe` in
+Linux/macOS and Windows respectively. Read below for more info.
 
 ## Usage
 
@@ -207,8 +209,6 @@ Starting: /Users/muquit/bin/markdown-serve -port 8485 /Users/muquit/notes
 `mdsr` is short for mark**d**own **s**erve **r**estart. Easier to type than the
 full name when running it often.
 
-**NOTE: By default, the scripts looks for markdown-serve and markdown-serve.exe in
-Linux/macOS and Windows respectively.**
 
 The scripts locate `markdown-serve` on `PATH`. To point at a binary
 that isn't on `PATH`, set the `MARKDOWN_SERVE_BIN` environment variable.
