@@ -38,14 +38,14 @@ page.
 
 ## Building from source
 
-Make sure @GO@ is installed. Look at @MAKEFILE@.
+Make sure @GO@ is installed.
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
 cd markdown-serve
 go build .
 ```
-or
+or Look at @MAKEFILE@ and type:
 ```
 make
 ```

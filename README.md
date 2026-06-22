@@ -99,14 +99,14 @@ brew untap muquit/markdown-serve
 
 ## Building from source
 
-Make sure [go](https://go.dev/) is installed. Look at [Makefile](Makefile).
+Make sure [go](https://go.dev/) is installed.
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
 cd markdown-serve
 go build .
 ```
-or
+or Look at [Makefile](Makefile) and type:
 ```
 make
 ```
