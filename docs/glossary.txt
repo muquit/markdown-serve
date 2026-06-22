@@ -15,3 +15,5 @@ SERVER_SENT_EVENTS [Server-sent events](https://en.wikipedia.org/wiki/Server-sen
 GO [go](https://go.dev/)
 MAKEFILE [Makefile](Makefile)
 WIREGUARD [WireGuard](https://www.wireguard.com/)
+GO_XBUILD_GO [go-xbuild-go](https://github.com/muquit/go-xbuild-go)
+LICENSE [LICENSE.txt](LICENSE.txt)

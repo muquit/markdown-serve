@@ -10,6 +10,10 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
+# Latest Version (v1.0.1)
+
+The latest version is v1.0.1 - released on Jun-21-2026 
+
 
 # Features
 
@@ -21,27 +25,32 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 - Recursive directory support with empty directory pruning
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
+- `mdsr.sh`/`mdsr.ps1` helper scripts to restart `markdown-serve` without manually killing a running instance first
 
 
 # Installation
-
-@[:markdown](brew_install.md)
-
 
 ## Download pre-compiled binaries
 
 Download a pre-built binary for your platform from @MARKDOWN_SERVE_RELEASES@
 page.
 
-## Build from source
+@[:markdown](brew_install.md)
+
+## Building from source
 
 Make sure @GO@ is installed. Look at @MAKEFILE@.
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
 cd markdown-serve
+go build .
+```
+or
+```
 make
 ```
+Requires @GO_XBUILD_GO@ for compiling cross-platform binaries
 
 # Synopsis
 
@@ -70,6 +79,7 @@ If no directory is given, the current directory is used.
 | `-watch` | `true` | Reload browser on file changes |
 | `-version` | | Print version and exit |
 
+
 ## Examples
 
 Serve the current directory:
@@ -96,6 +106,9 @@ Print version:
 ```
 markdown-serve -version
 ```
+
+@[:markdown](clis.md)
+
 # Accessing Home Network from anywhere
 
 Whenever needed, I run the markdown-serve on a machine at home and
@@ -103,6 +116,8 @@ access it from anywhere over @TAILSCALE@ using a browser to see how the
 Markdown is rendered as HTML. As long as both devices are on
 the same @TAILSCALE@ network, it just works. Browse and edit Markdown
 files remotely as if I were sitting at home.
+
+## Tailscale
 
 @[:markdown](tailscale.md)
 
@@ -115,16 +130,6 @@ To disable live reload:
 markdown-serve -watch=false
 ```
 
-# Building from source
-
-A @MAKEFILE@ is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
-
-```
-make          # build the binary
-make clean    # remove the binary
-make docs     # regenerate README.md from docs/README.md
-```
-
 # Dependencies
 
 - @GOMARKDOWN@ for rendering Markdown as HTML
@@ -135,7 +140,7 @@ The project uses the @GO@ standard library for HTTP serving.
 
 # License
 
-MIT
+MIT. Look at @LICENSE@ for details.
 
 # Author
 

@@ -1,20 +1,23 @@
 # Table Of Contents
 - [Introduction](#introduction)
+- [Latest Version (v1.0.1)](#latest-version-v1-0-1)
 - [Features](#features)
 - [Installation](#installation)
+  - [Download pre-compiled binaries](#download-pre-compiled-binaries)
   - [Installing using Homebrew on Mac/Linux](#installing-using-homebrew-on-mac-linux)
     - [Install](#install)
     - [Upgrade](#upgrade)
     - [Uninstall](#uninstall)
     - [Remove the tap](#remove-the-tap)
-  - [Download pre-compiled binaries](#download-pre-compiled-binaries)
-  - [Build from source](#build-from-source)
+  - [Building from source](#building-from-source)
 - [Synopsis](#synopsis)
   - [Options](#options)
   - [Examples](#examples)
+- [Helper CLIs](#helper-clis)
+  - [Usage](#usage)
 - [Accessing Home Network from anywhere](#accessing-home-network-from-anywhere)
+  - [Tailscale](#tailscale)
 - [Live Reload](#live-reload)
-- [Building from source](#building-from-source)
 - [Dependencies](#dependencies)
 - [License](#license)
 - [Author](#author)
@@ -31,6 +34,10 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
+# Latest Version (v1.0.1)
+
+The latest version is v1.0.1 - released on Jun-21-2026 
+
 
 # Features
 
@@ -42,9 +49,15 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 - Recursive directory support with empty directory pruning
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
+- `mdsr.sh`/`mdsr.ps1` helper scripts to restart `markdown-serve` without manually killing a running instance first
 
 
 # Installation
+
+## Download pre-compiled binaries
+
+Download a pre-built binary for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
+page.
 
 ## Installing using Homebrew on Mac/Linux
 
@@ -80,21 +93,20 @@ brew untap muquit/markdown-serve
 ```
 
 
-
-## Download pre-compiled binaries
-
-Download a pre-built binary for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
-page.
-
-## Build from source
+## Building from source
 
 Make sure [go](https://go.dev/) is installed. Look at [Makefile](Makefile).
 
 ```
 git clone https://github.com/muquit/markdown-serve.git
 cd markdown-serve
+go build .
+```
+or
+```
 make
 ```
+Requires [go-xbuild-go](https://github.com/muquit/go-xbuild-go) for compiling cross-platform binaries
 
 # Synopsis
 
@@ -123,6 +135,7 @@ If no directory is given, the current directory is used.
 | `-watch` | `true` | Reload browser on file changes |
 | `-version` | | Print version and exit |
 
+
 ## Examples
 
 Serve the current directory:
@@ -149,6 +162,61 @@ Print version:
 ```
 markdown-serve -version
 ```
+
+# Helper CLIs
+
+`markdown-serve` doesn't track whether another instance is already
+running. Start a second one on the same port and it just fails with
+`address already in use`. To avoid having to manually find and kill a
+stale process before starting a new one, two small wrapper scripts are
+included:
+
+- `mdsr.sh` for macOS/Linux
+- `mdsr.ps1` for Windows (PowerShell)
+
+Both take exactly the same arguments as `markdown-serve` itself. Before
+starting a new instance, they look for an already running
+`markdown-serve` process, print what it was serving, kill it, and then
+start the new one in its place.
+
+## Usage
+
+The scripts accept the same options and directory argument as `markdown-serve`. Copy them somewhere in your PATH.
+
+macOS/Linux:
+```
+mdsr.sh -port 8485 ~/notes
+```
+
+Windows (PowerShell):
+```
+mdsr.ps1 -port 8485 C:\notes
+```
+
+If `markdown-serve` was already running, you'll see something like:
+```
+Killing running markdown-serve (pid 79299): markdown-serve /Users/muquit/notes
+Starting: /Users/muquit/bin/markdown-serve -port 8485 /Users/muquit/notes
+```
+
+`mdsr` is short for mark**d**own **s**erve **r**estart. Easier to type than the
+full name when running it often.
+
+The scripts locate `markdown-serve` on `PATH`. To point at a binary
+that isn't on `PATH`, set the `MARKDOWN_SERVE_BIN` environment variable.
+Both scripts respect it:
+
+```
+MARKDOWN_SERVE_BIN=/path/to/markdown-serve mdsr.sh ~/notes
+```
+
+```
+$env:MARKDOWN_SERVE_BIN = "C:\path\to\markdown-serve.exe"
+mdsr.ps1 C:\notes
+```
+
+
+
 # Accessing Home Network from anywhere
 
 Whenever needed, I run the markdown-serve on a machine at home and
@@ -156,6 +224,8 @@ access it from anywhere over [Tailscale](https://tailscale.com/) using a browser
 Markdown is rendered as HTML. As long as both devices are on
 the same [Tailscale](https://tailscale.com/) network, it just works. Browse and edit Markdown
 files remotely as if I were sitting at home.
+
+## Tailscale
 
 
 [Tailscale](https://tailscale.com/) is a zero-config VPN built on [WireGuard](https://www.wireguard.com/) that creates a secure,
@@ -177,16 +247,6 @@ To disable live reload:
 markdown-serve -watch=false
 ```
 
-# Building from source
-
-A [Makefile](Makefile) is provided. It reads the version from the `VERSION` file and stamps it into the binary at compile time via `-ldflags`.
-
-```
-make          # build the binary
-make clean    # remove the binary
-make docs     # regenerate README.md from docs/README.md
-```
-
 # Dependencies
 
 - [github.com/gomarkdown/markdown](https://github.com/gomarkdown/markdown) for rendering Markdown as HTML
@@ -197,7 +257,7 @@ The project uses the [go](https://go.dev/) standard library for HTTP serving.
 
 # License
 
-MIT
+MIT. Look at [LICENSE.txt](LICENSE.txt) for details.
 
 # Author
 
