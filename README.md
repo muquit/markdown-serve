@@ -19,6 +19,7 @@
   - [Tailscale](#tailscale)
 - [Live Reload](#live-reload)
 - [Dependencies](#dependencies)
+- [Screenshots](#screenshots)
 - [License](#license)
 - [Author](#author)
 
@@ -50,7 +51,6 @@ The latest version is v1.0.1 - released on Jun-21-2026
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
 - `mdsr.sh`/`mdsr.ps1` helper scripts to restart `markdown-serve` without manually killing a running instance first
-
 
 # Installation
 
@@ -262,6 +262,18 @@ markdown-serve -watch=false
 - [highlight.js](https://highlightjs.org) loaded from CDN for syntax highlighting at render time
 
 The project uses the [go](https://go.dev/) standard library for HTTP serving.
+
+# Screenshots
+
+Listing of all Markdown files:
+
+![alt markdown-server ss1](images/ss1.png)
+
+Clicked on the [README.md](README.md)
+
+![alt markdown-server ss2](images/ss2.png)
+
+
 
 # License
 
