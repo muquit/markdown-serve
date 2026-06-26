@@ -12,7 +12,7 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 
 # Latest Version (v1.0.1)
 
-The latest version is v1.0.1 - released on Jun-21-2026 
+The latest version is v1.0.1 - released on Jun-26-2026 
 
 
 # Features
@@ -31,8 +31,10 @@ The latest version is v1.0.1 - released on Jun-21-2026
 
 ## Download pre-compiled binaries
 
-Download a pre-built binary for your platform from @MARKDOWN_SERVE_RELEASES@
-page.
+Download a pre-built binary for your platform from @MARKDOWN_SERVE_RELEASES@ page.
+
+Extract the archive and copy the binary as `markdown-serve` (Linux/macOS) or
+`markdown-serve.exe` (Windows) to somewhere in your PATH.
 
 @[:markdown](brew_install.md)
 

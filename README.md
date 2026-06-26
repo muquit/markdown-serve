@@ -37,7 +37,7 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 
 # Latest Version (v1.0.1)
 
-The latest version is v1.0.1 - released on Jun-21-2026 
+The latest version is v1.0.1 - released on Jun-26-2026 
 
 
 # Features
@@ -56,8 +56,10 @@ The latest version is v1.0.1 - released on Jun-21-2026
 
 ## Download pre-compiled binaries
 
-Download a pre-built binary for your platform from [Releases](https://github.com/muquit/markdown-serve/releases)
-page.
+Download a pre-built binary for your platform from [Releases](https://github.com/muquit/markdown-serve/releases) page.
+
+Extract the archive and copy the binary as `markdown-serve` (Linux/macOS) or
+`markdown-serve.exe` (Windows) to somewhere in your PATH.
 
 ## Installing using Homebrew on Mac/Linux
 
@@ -286,4 +288,4 @@ for implementation.
 
 
 ---
-<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-25-2026</sub>
+<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-26-2026</sub>

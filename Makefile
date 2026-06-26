@@ -3,7 +3,7 @@ VERSION := $(shell cat VERSION)
 LDFLAGS := -ldflags "-w -s -X main.version=$(VERSION)"
 BUILD_OPTIONS := -trimpath
 
-.PHONY: all build clean docs
+.PHONY: all build clean docs doc
 
 all: build
 
@@ -20,6 +20,8 @@ docs:
 	markdown-toc-go -i docs/README.md \
         -o ./README.md --glossary docs/glossary.txt -f
 	markdown-toc-go -i docs/ChangeLog.md -o ./ChangeLog.md --glossary docs/glossary.txt -f -no-credit
+
+doc: docs
 
 # check if GITHUB_TOKEN is set and valid, fail the build otherwise
 check_github_token:
