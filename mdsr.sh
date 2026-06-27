@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
+
+########################################################################
 # Restart wrapper for markdown-serve: kills any already-running instance
 # (by resolved binary path) and starts a new one with the given args.
+# Part of: https://github.com/muquit/markdown-serve
+# Jun-26-2026 
+########################################################################
 set -euo pipefail
 
 BINARY="${MARKDOWN_SERVE_BIN:-markdown-serve}"

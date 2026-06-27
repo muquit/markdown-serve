@@ -11,7 +11,7 @@ build:
 	@echo ">>>> Compiling native binary ..."
 	go build $(BUILD_OPTIONS) $(LDFLAGS) -o $(BINARY) .
 	@echo ""
-	@echo ">>>> Compiling cros-platform binaries ..."
+	@echo ">>>> Compiling cross-platform binaries ..."
 	go-xbuild-go \
 		-additional-files "mdsr.sh,mdsr.ps1" \
 		-build-args '$(BUILD_OPTIONS) $(LDFLAGS)'

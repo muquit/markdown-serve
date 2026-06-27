@@ -53,7 +53,12 @@ make
 ```
 Requires @GO_XBUILD_GO@ for compiling cross-platform binaries
 
-# Synopsis
+# Usage
+
+* Start `markdown-serve` server
+* Point your browser to the URL e.g. http://localhost:8485
+* Edit Markdown files and the changes will be automatically refreshed in your
+browser
 
 ```
 ➤ markdown-serve -h

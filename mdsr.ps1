@@ -1,6 +1,11 @@
 #!/usr/bin/env pwsh
+
+#########################################################################
 # Restart wrapper for markdown-serve (Windows/PowerShell): kills any
 # already-running instance and starts a new one with the given args.
+# Part of https://github.com/muquit/markdown-serve
+# Jun-26-2026 
+#########################################################################
 
 param(
     [Parameter(ValueFromRemainingArguments = $true)]

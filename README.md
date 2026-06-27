@@ -10,7 +10,7 @@
     - [Uninstall](#uninstall)
     - [Remove the tap](#remove-the-tap)
   - [Building from source](#building-from-source)
-- [Synopsis](#synopsis)
+- [Usage](#usage)
   - [Options](#options)
   - [Examples](#examples)
 - [Helper CLIs (mdsr.sh and mdsr.ps1)](#helper-clis-mdsrsh-and-mdsrps1)
@@ -114,7 +114,12 @@ make
 ```
 Requires [go-xbuild-go](https://github.com/muquit/go-xbuild-go) for compiling cross-platform binaries
 
-# Synopsis
+# Usage
+
+* Start `markdown-serve` server
+* Point your browser to the URL e.g. http://localhost:8485
+* Edit Markdown files and the changes will be automatically refreshed in your
+browser
 
 ```
 ➤ markdown-serve -h
