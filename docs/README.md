@@ -55,7 +55,7 @@ Requires @GO_XBUILD_GO@ for compiling cross-platform binaries
 
 # Usage
 
-* Start `markdown-serve` server
+* Start `markdown-serve` server with a directory containing `.md` file
 * Point your browser to the URL e.g. http://localhost:8485
 * Edit Markdown files and the changes will be automatically refreshed in your
 browser
