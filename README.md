@@ -1,6 +1,6 @@
 # Table Of Contents
 - [Introduction](#introduction)
-- [Latest Version (v1.0.2 - Jul-13-2026)](#latest-version-v102-jul-13-2026)
+- [Latest Version (v1.0.2)](#latest-version-v102)
 - [Features](#features)
 - [Installation](#installation)
   - [Download pre-compiled binaries](#download-pre-compiled-binaries)
@@ -35,7 +35,7 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
-# Latest Version (v1.0.2 - Jul-13-2026)
+# Latest Version (v1.0.2)
 
 The latest version is v1.0.2 Please look at [ChangeLog.md](ChangeLog.md) for details.
 
