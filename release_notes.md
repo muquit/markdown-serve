@@ -8,26 +8,26 @@ Please look at [ChangeLog.md](ChangeLog.md) for details on what has changed in t
 Archive:  bin/markdown-serve-v1.0.2-windows-amd64.d.zip
   Length      Date    Time    Name
 ---------  ---------- -----   ----
-        0  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/
-     1078  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/LICENSE.txt
-     9100  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/README.md
-  9111552  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/markdown-serve-v1.0.2-windows-amd64.exe
-     1418  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/mdsr.ps1
-     1329  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/mdsr.sh
-      903  07-13-2026 19:33   markdown-serve-v1.0.2-windows-amd64.d/platforms.txt
+        0  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/
+     1078  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/LICENSE.txt
+     9348  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/README.md
+  9112576  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/markdown-serve-v1.0.2-windows-amd64.exe
+     1418  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/mdsr.ps1
+     1329  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/mdsr.sh
+      903  07-13-2026 20:10   markdown-serve-v1.0.2-windows-amd64.d/platforms.txt
 ---------                     -------
-  9125380                     7 files
+  9126652                     7 files
 ```
 
 ```
 ➤ tar -tvf markdown-serve-v1.0.2-linux-amd64.d.tar.gz
-drwxr-xr-x  0 muquit staff       0 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/
--rw-r--r--  0 muquit staff    1078 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/LICENSE.txt
--rw-r--r--  0 muquit staff    9100 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/README.md
--rwxr-xr-x  0 muquit staff 8749218 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/markdown-serve-v1.0.2-linux-amd64
--rwxr-xr-x  0 muquit staff    1418 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/mdsr.ps1
--rwxr-xr-x  0 muquit staff    1329 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/mdsr.sh
--rw-r--r--  0 muquit staff     903 Jul 13 19:33 markdown-serve-v1.0.2-linux-amd64.d/platforms.txt
+drwxr-xr-x  0 muquit staff       0 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/
+-rw-r--r--  0 muquit staff    1078 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/LICENSE.txt
+-rw-r--r--  0 muquit staff    9348 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/README.md
+-rwxr-xr-x  0 muquit staff 8749218 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/markdown-serve-v1.0.2-linux-amd64
+-rwxr-xr-x  0 muquit staff    1418 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/mdsr.ps1
+-rwxr-xr-x  0 muquit staff    1329 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/mdsr.sh
+-rw-r--r--  0 muquit staff     903 Jul 13 20:10 markdown-serve-v1.0.2-linux-amd64.d/platforms.txt
 ```
 
 Copy the binary as `markdown-serve` or `markdown-serve.exe` to somewhere in your PATH.
