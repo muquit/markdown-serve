@@ -1,6 +1,6 @@
 # Table Of Contents
 - [Introduction](#introduction)
-- [Latest Version (v1.0.1)](#latest-version-v101)
+- [Latest Version (v1.0.2 - Jul-13-2026)](#latest-version-v102-jul-13-2026)
 - [Features](#features)
 - [Installation](#installation)
   - [Download pre-compiled binaries](#download-pre-compiled-binaries)
@@ -35,10 +35,9 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
-# Latest Version (v1.0.1)
+# Latest Version (v1.0.2 - Jul-13-2026)
 
-The latest version is v1.0.1 - released on Jun-26-2026 
-
+The latest version is v1.0.2 Please look at [ChangeLog.md](ChangeLog.md) for details.
 
 # Features
 
@@ -50,7 +49,10 @@ The latest version is v1.0.1 - released on Jun-26-2026
 - Recursive directory support with empty directory pruning
 - Path traversal protection
 - Binds to `0.0.0.0` by default so you can access it remotely
+- Dark mode via the `-dark` flag
 - `mdsr.sh`/`mdsr.ps1` helper scripts to restart `markdown-serve` without manually killing a running instance first
+
+
 
 # Installation
 
@@ -124,6 +126,8 @@ browser
 ```
 ➤ markdown-serve -h
 Usage of markdown-serve:
+  -dark
+    	Render pages in dark mode
   -host string
     	Host to bind to (default "0.0.0.0")
   -port int
@@ -132,7 +136,6 @@ Usage of markdown-serve:
     	Print version and exit
   -watch
     	Reload browser on file changes (default true)
-
 ```
 
 If no directory is given, the current directory is used.
@@ -141,10 +144,11 @@ If no directory is given, the current directory is used.
 
 | Option | Default | Description |
 |--------|---------|-------------|
+| `-dark` |  | Render pages in dark mode |
 | `-host` | `0.0.0.0` | Host to bind to |
 | `-port` | `8485` | Port to listen on |
+| `-version` |  | Print version and exit |
 | `-watch` | `true` | Reload browser on file changes |
-| `-version` | | Print version and exit |
 
 
 ## Examples
@@ -169,10 +173,11 @@ Restrict to localhost only:
 markdown-serve -host 127.0.0.1
 ```
 
-Print version:
+Serve in dark mode:
 ```
-markdown-serve -version
+markdown-serve -dark ~/notes
 ```
+
 
 # Helper CLIs (mdsr.sh and mdsr.ps1)
 
@@ -205,6 +210,11 @@ mdsr.sh -port 8485 ~/notes
 Windows (PowerShell):
 ```
 mdsr.ps1 -port 8485 C:\notes
+```
+
+Serve in dark mode:
+```
+mdsr.sh -dark ~/notes
 ```
 
 If `markdown-serve` was already running, you'll see something like:
@@ -293,4 +303,4 @@ for implementation.
 
 
 ---
-<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jun-26-2026</sub>
+<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jul-13-2026</sub>

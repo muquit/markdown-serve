@@ -16,12 +16,15 @@ build:
 		-additional-files "mdsr.sh,mdsr.ps1" \
 		-build-args '$(BUILD_OPTIONS) $(LDFLAGS)'
 
-docs:
+docs: gen_usage
 	markdown-toc-go -i docs/README.md \
         -o ./README.md --glossary docs/glossary.txt -f
 	markdown-toc-go -i docs/ChangeLog.md -o ./ChangeLog.md --glossary docs/glossary.txt -f -no-credit
 
 doc: docs
+
+gen_usage:
+	./scripts/gen_usage.sh
 
 # check if GITHUB_TOKEN is set and valid, fail the build otherwise
 check_github_token:
@@ -42,7 +45,10 @@ check_github_token:
 	@curl -sI -H "Authorization: token $(GITHUB_TOKEN)" \
         https://api.github.com/user | grep -i x-oauth-scopes
 
-release: check_github_token
+mk_release_notes:
+	./scripts/mk_release_notes.sh
+
+release: check_github_token mk_release_notes
 	@echo "*** Releasing on github ..."
 	go-xbuild-go -release
 

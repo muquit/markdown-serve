@@ -10,22 +10,12 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
-# Latest Version (v1.0.1)
+# Latest Version (v1.0.2 - Jul-13-2026)
 
-The latest version is v1.0.1 - released on Jun-26-2026 
+The latest version is v1.0.2 Please look at @CHANGELOG@ for details.
 
+@[:markdown](features.md)
 
-# Features
-
-- Lists `.md` files as a collapsible tree (directories and files)
-- Renders Markdown as clean HTML
-- Syntax highlighting via @HIGHLIGHTJS@ loaded from CDN
-- GitHub-flavored Markdown extensions: tables, strikethrough, task lists, fenced code blocks, auto-heading IDs
-- Live reload via @SERVER_SENT_EVENTS@ when files change on disk (on by default)
-- Recursive directory support with empty directory pruning
-- Path traversal protection
-- Binds to `0.0.0.0` by default so you can access it remotely
-- `mdsr.sh`/`mdsr.ps1` helper scripts to restart `markdown-serve` without manually killing a running instance first
 
 # Installation
 
@@ -53,65 +43,7 @@ make
 ```
 Requires @GO_XBUILD_GO@ for compiling cross-platform binaries
 
-# Usage
-
-* Start `markdown-serve` server with a directory containing `.md` file
-* Point your browser to the URL e.g. http://localhost:8485
-* Edit Markdown files and the changes will be automatically refreshed in your
-browser
-
-```
-➤ markdown-serve -h
-Usage of markdown-serve:
-  -host string
-    	Host to bind to (default "0.0.0.0")
-  -port int
-    	Port to listen on (default 8485)
-  -version
-    	Print version and exit
-  -watch
-    	Reload browser on file changes (default true)
-
-```
-
-If no directory is given, the current directory is used.
-
-## Options
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| `-host` | `0.0.0.0` | Host to bind to |
-| `-port` | `8485` | Port to listen on |
-| `-watch` | `true` | Reload browser on file changes |
-| `-version` | | Print version and exit |
-
-
-## Examples
-
-Serve the current directory:
-```
-markdown-serve
-```
-
-Serve a specific directory on a custom port:
-```
-markdown-serve -port 8485 ~/notes
-```
-
-Serve without live reload:
-```
-markdown-serve -watch=false /path/to/docs
-```
-
-Restrict to localhost only:
-```
-markdown-serve -host 127.0.0.1
-```
-
-Print version:
-```
-markdown-serve -version
-```
+@[:markdown](usage.md)
 
 @[:markdown](clis.md)
 

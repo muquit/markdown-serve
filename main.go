@@ -15,6 +15,7 @@ type Config struct {
 	Port    int
 	Dir     string
 	Watch   bool
+	Dark    bool
 	Version string
 }
 
@@ -22,6 +23,7 @@ func main() {
 	host := flag.String("host", "0.0.0.0", "Host to bind to")
 	port := flag.Int("port", 8485, "Port to listen on")
 	watch := flag.Bool("watch", true, "Reload browser on file changes")
+	dark := flag.Bool("dark", false, "Render pages in dark mode")
 	showVersion := flag.Bool("version", false, "Print version and exit")
 	flag.Parse()
 
@@ -48,6 +50,7 @@ func main() {
 		Port:    *port,
 		Dir:     dir,
 		Watch:   *watch,
+		Dark:    *dark,
 		Version: version,
 	}
 

@@ -31,6 +31,11 @@ Windows (PowerShell):
 mdsr.ps1 -port 8485 C:\notes
 ```
 
+Serve in dark mode:
+```
+mdsr.sh -dark ~/notes
+```
+
 If `markdown-serve` was already running, you'll see something like:
 ```
 Killing running markdown-serve (pid 79299): markdown-serve /Users/muquit/notes

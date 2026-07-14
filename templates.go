@@ -38,9 +38,15 @@ var indexTmpl = template.Must(template.New("index").Parse(`
     a { text-decoration: none; color: #0366d6; }
     a:hover { text-decoration: underline; }
     footer { margin-top: 24px; font-size: 0.85em; color: #888; }
+    body.dark { background: #0d1117; color: #c9d1d9; }
+    body.dark h1 { color: #8b949e; }
+    body.dark summary { color: #c9d1d9; }
+    body.dark summary:hover { color: #fff; }
+    body.dark a { color: #58a6ff; }
+    body.dark footer { color: #8b949e; }
   </style>
 </head>
-<body>
+<body{{if .Dark}} class="dark"{{end}}>
   <h1>{{ .Dir }}</h1>
   <ul class="tree">
     {{range .Root.Children}}{{template "node" .}}{{end}}
@@ -60,7 +66,7 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <title>{{ .Title }}</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  {{if .Dark}}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">{{else}}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">{{end}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   <style>
@@ -75,9 +81,19 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
     th, td { border: 1px solid #ddd; padding: 8px 12px; }
     th { background: #f6f8fa; }
     img { max-width: 100%; }
+    blockquote { margin: 0 0 16px; padding: 0 1em; color: #6a737d; border-left: 0.25em solid #dfe2e5; }
+    blockquote > :first-child { margin-top: 0; }
+    blockquote > :last-child { margin-bottom: 0; }
+    body.dark { background: #0d1117; color: #c9d1d9; }
+    body.dark pre { background: #161b22; }
+    body.dark a { color: #58a6ff; }
+    body.dark .modtime { color: #8b949e; }
+    body.dark th, body.dark td { border-color: #30363d; }
+    body.dark th { background: #161b22; }
+    body.dark blockquote { color: #8b949e; border-left-color: #30363d; }
   </style>
 </head>
-<body>
+<body{{if .Dark}} class="dark"{{end}}>
   <nav><a href="/">&#8592; Back</a><span class="modtime">{{ if .Version }}Rendered by markdown-serve {{ .Version }} &middot; {{ end }}Last modified: {{ .ModTime }}</span></nav>
   {{ .Body }}
   {{if .Watch}}<script>
@@ -89,24 +105,26 @@ es.onerror = () => { es.close(); setTimeout(() => location.reload(), 2000); };
 </html>
 `))
 
-func renderIndex(w io.Writer, dir string, root *TreeNode, count int, watch bool) {
+func renderIndex(w io.Writer, dir string, root *TreeNode, count int, watch bool, dark bool) {
 	data := struct {
 		Dir   string
 		Root  *TreeNode
 		Count int
 		Watch bool
+		Dark  bool
 	}{
 		Dir:   dir,
 		Root:  root,
 		Count: count,
 		Watch: watch,
+		Dark:  dark,
 	}
 	if err := indexTmpl.Execute(w, data); err != nil {
 		fmt.Fprintf(w, "template error: %v", err)
 	}
 }
 
-func renderDocument(w io.Writer, title string, body []byte, modTime string, watch bool, version string) {
+func renderDocument(w io.Writer, title string, body []byte, modTime string, watch bool, version string, dark bool) {
 	display := strings.TrimSuffix(title, ".md")
 	data := struct {
 		Title   string
@@ -114,12 +132,14 @@ func renderDocument(w io.Writer, title string, body []byte, modTime string, watc
 		ModTime string
 		Watch   bool
 		Version string
+		Dark    bool
 	}{
 		Title:   display,
 		Body:    template.HTML(body),
 		ModTime: modTime,
 		Watch:   watch,
 		Version: version,
+		Dark:    dark,
 	}
 	if err := docTmpl.Execute(w, data); err != nil {
 		fmt.Fprintf(w, "template error: %v", err)
