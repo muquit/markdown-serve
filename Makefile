@@ -7,7 +7,7 @@ BUILD_OPTIONS := -trimpath
 
 all: build
 
-build:
+build: clean
 	@echo ">>>> Compiling native binary ..."
 	go build $(BUILD_OPTIONS) $(LDFLAGS) -o $(BINARY) .
 	@echo ""
