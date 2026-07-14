@@ -12,7 +12,7 @@ Suggestions, pull requests are welcome but please keep in mind that I like to ke
 
 # Latest Version (v1.0.2)
 
-The latest version is v1.0.2 Please look at @CHANGELOG@ for details.
+The latest version is v1.0.2, released on Jul-13-2026. Please look at @CHANGELOG@ for details.
 
 @[:markdown](features.md)
 
