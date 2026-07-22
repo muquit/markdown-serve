@@ -20,6 +20,7 @@
 - [Live Reload](#live-reload)
 - [Dependencies](#dependencies)
 - [Screenshots](#screenshots)
+- [See Also](#see-also)
 - [License](#license)
 - [Author](#author)
 
@@ -291,6 +292,10 @@ Clicked on the [README.md](README.md)
 ![alt markdown-server ss2](images/ss2.png)
 
 
+# See Also
+
+[markdown-toc-go](https://github.com/muquit/markdown-toc-go) - markdown TOC generator with glossary placeholder expander
+
 
 # License
 
@@ -303,4 +308,4 @@ for implementation.
 
 
 ---
-<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jul-13-2026</sub>
+<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Jul-22-2026</sub>
