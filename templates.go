@@ -71,9 +71,13 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
   <script>hljs.highlightAll();</script>
   <style>
     body { max-width: 860px; margin: 40px auto; font-family: Georgia, serif; padding: 0 20px; color: #333; line-height: 1.7; }
-    pre { background: #f6f8fa; padding: 16px; border-radius: 4px; overflow-x: auto; }
+    .code-wrap { position: relative; }
+    pre { background: #f6f8fa; padding: 4px 6px; border-radius: 4px; overflow-x: auto; }
     code { font-family: monospace; font-size: 0.9em; }
     pre code { background: none; padding: 0; }
+    .copy-btn { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(27,31,36,0.15); border-radius: 4px; background: #fff; color: #57606a; cursor: pointer; }
+    .copy-btn:hover { background: #f3f4f6; }
+    .copy-btn.copied { background: #2da44e; color: #fff; border-color: #2da44e; }
     a { color: #0366d6; }
     nav { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; font-size: 0.9em; }
     .modtime { color: #888; font-size: 0.85em; }
@@ -91,11 +95,55 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
     body.dark th, body.dark td { border-color: #30363d; }
     body.dark th { background: #161b22; }
     body.dark blockquote { color: #8b949e; border-left-color: #30363d; }
+    body.dark .copy-btn { background: #21262d; color: #8b949e; border-color: rgba(240,246,252,0.1); }
+    body.dark .copy-btn:hover { background: #30363d; }
+    body.dark .copy-btn.copied { background: #238636; color: #fff; border-color: #238636; }
   </style>
 </head>
 <body{{if .Dark}} class="dark"{{end}}>
   <nav><a href="/">&#8592; Back</a><span class="modtime">{{ if .Version }}Rendered by markdown-serve {{ .Version }} &middot; {{ end }}Last modified: {{ .ModTime }}</span></nav>
   {{ .Body }}
+  <script>
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  return Promise.resolve();
+}
+const copyIcon = '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>';
+const checkIcon = '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>';
+document.querySelectorAll('pre code').forEach((code) => {
+  const pre = code.parentElement;
+  const wrap = document.createElement('div');
+  wrap.className = 'code-wrap';
+  pre.parentNode.insertBefore(wrap, pre);
+  wrap.appendChild(pre);
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'copy-btn';
+  btn.setAttribute('aria-label', 'Copy code');
+  btn.innerHTML = copyIcon;
+  btn.addEventListener('click', () => {
+    copyText(code.textContent).then(() => {
+      btn.innerHTML = checkIcon;
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = copyIcon;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+  wrap.appendChild(btn);
+});
+</script>
   {{if .Watch}}<script>
 const es = new EventSource('/events');
 es.onmessage = () => location.reload();
