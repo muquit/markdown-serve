@@ -1,8 +1,14 @@
 # Table Of Contents
+- [1.0.4](#104)
 - [v1.0.3](#v103)
 - [v1.0.2](#v102)
 - [v1.0.1](#v101)
 
+
+# 1.0.4
+* Add project link at the Rendered by line at the top.
+
+(Aug-09-2026)
 
 # v1.0.3
 

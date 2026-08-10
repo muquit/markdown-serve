@@ -101,7 +101,7 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
   </style>
 </head>
 <body{{if .Dark}} class="dark"{{end}}>
-  <nav><a href="/">&#8592; Back</a><span class="modtime">{{ if .Version }}Rendered by markdown-serve {{ .Version }} &middot; {{ end }}Last modified: {{ .ModTime }}</span></nav>
+  <nav><a href="/">&#8592; Back</a><span class="modtime">{{ if .Version }}Rendered by <a href="https://github.com/muquit/markdown-serve" target="_blank" rel="noopener noreferrer">markdown-serve</a> {{ .Version }} &middot; {{ end }}Last modified: {{ .ModTime }}</span></nav>
   {{ .Body }}
   <script>
 function copyText(text) {

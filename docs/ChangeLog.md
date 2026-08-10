@@ -1,4 +1,9 @@
 
+# 1.0.4
+* Add project link at the Rendered by line at the top.
+
+(Aug-09-2026)
+
 # v1.0.3
 
 * Add copy-to-clipboard icon button on code blocks
