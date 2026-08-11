@@ -14,6 +14,7 @@ build: clean
 	@echo ">>>> Compiling cross-platform binaries ..."
 	go-xbuild-go \
 		-additional-files "mdsr.sh,mdsr.ps1" \
+		-brew-extra-bin-files "mdsr.sh" \
 		-build-args '$(BUILD_OPTIONS) $(LDFLAGS)'
 
 docs: gen_usage

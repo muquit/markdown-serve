@@ -1,6 +1,6 @@
 # Table Of Contents
 - [Introduction](#introduction)
-- [Latest Version (v1.0.3)](#latest-version-v103)
+- [Latest Version (v1.0.5)](#latest-version-v105)
 - [Features](#features)
 - [Installation](#installation)
   - [Download pre-compiled binaries](#download-pre-compiled-binaries)
@@ -36,9 +36,9 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
-# Latest Version (v1.0.3)
+# Latest Version (v1.0.5)
 
-The latest version is v1.0.3, released on Jul-24-2026. Please look at [ChangeLog.md](ChangeLog.md) for details.
+The latest version is v1.0.5, released on xdtae . Please look at [ChangeLog.md](ChangeLog.md) for details.
 
 # Features
 
@@ -308,4 +308,4 @@ for implementation.
 
 
 ---
-<sub>TOC/glossary expansion by https://github.com/muquit/markdown-toc-go v1.0.5 on Aug-09-2026</sub>
+<sub>TOC is created by https://github.com/muquit/markdown-toc-go on Aug-10-2026</sub>

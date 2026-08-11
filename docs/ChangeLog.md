@@ -1,4 +1,9 @@
 
+# 1.0.5
+* Add `mdsr.sh` in brew formula file. Uses `go-xbuilg-go v1.0.10`. No code
+  change.
+(Aug-10-2026)
+
 # 1.0.4
 * Add project link at the Rendered by line at the top.
 
