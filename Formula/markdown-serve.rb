@@ -9,16 +9,16 @@ class MarkdownServe < Formula
 
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/muquit/markdown-serve/releases/download/v1.0.6/markdown-serve-v1.0.6-darwin-arm64.d.tar.gz"
-    sha256 "1d45a7ccc94465d8bfebb761c6fea14283c40ae0bc770c1c715ac5031a0b9738"
+    sha256 "039d1dfe07c87aa3a6cee2a5cbcf1eb7a1db56623b87da3380d6794e9ff95c8f"
   elsif OS.mac? && Hardware::CPU.intel?
     url "https://github.com/muquit/markdown-serve/releases/download/v1.0.6/markdown-serve-v1.0.6-darwin-amd64.d.tar.gz"
-    sha256 "2a31bde5da40f4e437fa5ff0d6efbe9465723c50b98bedd92f6e3c8a0dfe38fc"
+    sha256 "63779ddf01115f6e78dd7c520c9ce6f66ec7daa59bf2c89200ef95c10e2b35c4"
   elsif OS.linux? && Hardware::CPU.intel?
     url "https://github.com/muquit/markdown-serve/releases/download/v1.0.6/markdown-serve-v1.0.6-linux-amd64.d.tar.gz"
-    sha256 "7227af28855be560d5cd8a48a87f2f4c6982340447498e00fed4bdf0548ad6a8"
+    sha256 "2791bc7f3aaff5a3913442e0632aea82c4e7d59c63724e700044b9cc02c30533"
   elsif OS.linux? && Hardware::CPU.arm?
     url "https://github.com/muquit/markdown-serve/releases/download/v1.0.6/markdown-serve-v1.0.6-linux-arm64.d.tar.gz"
-    sha256 "003261ebdf21e7b40aae53432c2e653c877e96149f3e8fd826a6012dbeafdf93"
+    sha256 "6df6d93b70f5c1a98e40a8c0077fdf206144f55c1ca42df50ad535f90a9865db"
   end
 
   def install
