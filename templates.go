@@ -53,9 +53,19 @@ var indexTmpl = template.Must(template.New("index").Parse(`
   </ul>
   <footer>{{ .Count }} file{{ if ne .Count 1 }}s{{ end }}</footer>
   {{if .Watch}}<script>
-const es = new EventSource('/events');
-es.onmessage = () => location.reload();
-es.onerror = () => { es.close(); setTimeout(() => location.reload(), 2000); };
+let watchRevision;
+async function checkForChanges() {
+  try {
+    const response = await fetch('/events', {cache: 'no-store'});
+    const revision = await response.text();
+    if (watchRevision !== undefined && revision !== watchRevision) location.reload();
+    watchRevision = revision;
+  } catch (_) {
+    // The next poll will retry if the server is temporarily unavailable.
+  }
+}
+checkForChanges();
+setInterval(checkForChanges, 1000);
 </script>{{end}}
 </body>
 </html>
@@ -66,9 +76,6 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <title>{{ .Title }}</title>
-  {{if .Dark}}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">{{else}}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">{{end}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
   <style>
     body { max-width: 860px; margin: 40px auto; font-family: Georgia, serif; padding: 0 20px; color: #333; line-height: 1.7; }
     .code-wrap { position: relative; }
@@ -120,6 +127,21 @@ function copyText(text) {
 }
 const copyIcon = '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>';
 const checkIcon = '<svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg>';
+
+// Highlighting is optional enhancement. Load it only after the document has
+// finished so an unavailable CDN cannot delay the initial page navigation.
+window.addEventListener('load', () => {
+  const theme = document.createElement('link');
+  theme.rel = 'stylesheet';
+  theme.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/{{if .Dark}}github-dark{{else}}github{{end}}.min.css';
+  document.head.appendChild(theme);
+
+  const highlighter = document.createElement('script');
+  highlighter.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js';
+  highlighter.onload = () => hljs.highlightAll();
+  document.head.appendChild(highlighter);
+});
+
 document.querySelectorAll('pre code').forEach((code) => {
   const pre = code.parentElement;
   const wrap = document.createElement('div');
@@ -145,9 +167,19 @@ document.querySelectorAll('pre code').forEach((code) => {
 });
 </script>
   {{if .Watch}}<script>
-const es = new EventSource('/events');
-es.onmessage = () => location.reload();
-es.onerror = () => { es.close(); setTimeout(() => location.reload(), 2000); };
+let watchRevision;
+async function checkForChanges() {
+  try {
+    const response = await fetch('/events', {cache: 'no-store'});
+    const revision = await response.text();
+    if (watchRevision !== undefined && revision !== watchRevision) location.reload();
+    watchRevision = revision;
+  } catch (_) {
+    // The next poll will retry if the server is temporarily unavailable.
+  }
+}
+checkForChanges();
+setInterval(checkForChanges, 1000);
 </script>{{end}}
 </body>
 </html>

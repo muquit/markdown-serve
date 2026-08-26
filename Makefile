@@ -3,9 +3,12 @@ VERSION := $(shell cat VERSION)
 LDFLAGS := -ldflags "-w -s -X main.version=$(VERSION)"
 BUILD_OPTIONS := -trimpath
 
-.PHONY: all build clean docs doc
+.PHONY: all build clean docs doc test
 
 all: build
+
+test:
+	go test ./...
 
 build: clean
 	@echo ">>>> Compiling native binary ..."

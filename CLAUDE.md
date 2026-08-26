@@ -35,7 +35,7 @@ developer/personal tool, not a production web server.
   fenced code blocks, auto-heading IDs
 - Images referenced from Markdown (`.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`,
   `.webp`, `.ico`) are served alongside the rendered page
-- Optional `--watch` flag: live reload via SSE when `.md` files change on disk
+- Optional `--watch` flag: live reload via revision polling when `.md` files change on disk
 
 # CLI Usage
 
@@ -137,4 +137,3 @@ github.com/fsnotify/fsnotify
 - No file upload
 - No editing
 - No authentication
-

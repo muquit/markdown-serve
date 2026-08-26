@@ -1,10 +1,24 @@
 
-# 1.0.5
+# v1.0.6
+
+* Fix Markdown pages occasionally loading indefinitely in the browser. Live
+  reload now uses lightweight revision polling instead of holding one SSE
+  connection open per tab, which could exhaust Chrome's HTTP/1.1 connection
+  pool.
+* Load Highlight.js after the document has finished loading so CDN delays do
+  not block the initial page render.
+
+The bug was indentified and fixed by @CODEX@
+
+
+(Aug-25-2026)
+
+# v1.0.5
 * Add `mdsr.sh` in brew formula file. Uses `go-xbuilg-go v1.0.10`. No code
   change.
 (Aug-10-2026)
 
-# 1.0.4
+# v1.0.4
 * Add project link at the Rendered by line at the top.
 
 (Aug-09-2026)

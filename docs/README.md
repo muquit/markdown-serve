@@ -10,9 +10,9 @@ I find it much more pleasurable to work that way. Hope you find it useful as wel
 
 Suggestions, pull requests are welcome but please keep in mind that I like to keep things simple.
 
-# Latest Version (v1.0.5)
+# Latest Version (v1.0.6)
 
-The latest version is v1.0.5, released on xdtae . Please look at @CHANGELOG@ for details.
+The latest version is v1.0.6, released on Aug-25-2026 . Please look at @CHANGELOG@ for details.
 
 @[:markdown](features.md)
 
@@ -96,8 +96,10 @@ Clicked on the [README.md](README.md)
 
 MIT. Look at @LICENSE@ for details.
 
-# Author
+# Credits
 
-Built with the help from @CLAUDE_CODE@. Look at [CLAUDE.md](CLAUDE.md) for the prompt used
+* Built with the help from @CLAUDE_CODE@. Look at [CLAUDE.md](CLAUDE.md) for the prompt used
 for implementation.
+
+* Bug fixes by @CODEX@
 

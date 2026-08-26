@@ -65,7 +65,7 @@ func main() {
 		if err := startWatcher(cfg, b); err != nil {
 			log.Fatalf("watcher error: %v", err)
 		}
-		mux.HandleFunc("/events", sseHandler(b))
+		mux.HandleFunc("/events", watchHandler(b))
 		log.Printf("Watch mode enabled")
 	}
 

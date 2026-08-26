@@ -7,47 +7,25 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
-	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
 )
 
 type broadcaster struct {
-	mu      sync.Mutex
-	clients map[chan struct{}]struct{}
+	revision atomic.Uint64
 }
 
 func newBroadcaster() *broadcaster {
-	return &broadcaster{clients: make(map[chan struct{}]struct{})}
-}
-
-func (b *broadcaster) subscribe() chan struct{} {
-	ch := make(chan struct{}, 1)
-	b.mu.Lock()
-	b.clients[ch] = struct{}{}
-	b.mu.Unlock()
-	return ch
-}
-
-func (b *broadcaster) unsubscribe(ch chan struct{}) {
-	b.mu.Lock()
-	delete(b.clients, ch)
-	b.mu.Unlock()
+	return &broadcaster{}
 }
 
 func (b *broadcaster) broadcast() {
-	b.mu.Lock()
-	n := len(b.clients)
-	for ch := range b.clients {
-		select {
-		case ch <- struct{}{}:
-		default:
-		}
-	}
-	b.mu.Unlock()
-	log.Printf("watch: broadcasting reload to %d client(s)", n)
+	revision := b.revision.Add(1)
+	log.Printf("watch: revision %d", revision)
 }
 
 func startWatcher(cfg *Config, b *broadcaster) error {
@@ -107,40 +85,10 @@ func startWatcher(cfg *Config, b *broadcaster) error {
 	return nil
 }
 
-func sseHandler(b *broadcaster) http.HandlerFunc {
+func watchHandler(b *broadcaster) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		flusher, ok := w.(http.Flusher)
-		if !ok {
-			http.Error(w, "streaming not supported", http.StatusInternalServerError)
-			return
-		}
-
-		w.Header().Set("Content-Type", "text/event-stream")
-		w.Header().Set("Cache-Control", "no-cache")
-		w.Header().Set("Connection", "keep-alive")
-
-		// Send initial comment to flush headers to the browser immediately.
-		fmt.Fprintf(w, ": connected\n\n")
-		flusher.Flush()
-
-		ch := b.subscribe()
-		defer b.unsubscribe(ch)
-
-		// Keepalive ticker: prevents proxies and browsers from closing idle connections.
-		ticker := time.NewTicker(15 * time.Second)
-		defer ticker.Stop()
-
-		for {
-			select {
-			case <-ch:
-				fmt.Fprintf(w, "data: reload\n\n")
-				flusher.Flush()
-			case <-ticker.C:
-				fmt.Fprintf(w, ": ping\n\n")
-				flusher.Flush()
-			case <-r.Context().Done():
-				return
-			}
-		}
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		w.Header().Set("Cache-Control", "no-store")
+		_, _ = fmt.Fprintln(w, strconv.FormatUint(b.revision.Load(), 10))
 	}
 }
