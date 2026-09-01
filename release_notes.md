@@ -6,15 +6,15 @@ See [ChangeLog.md](ChangeLog.md) for details about this release.
 
 | OS | Archive | Size (bytes) |
 |---|---|---:|
-| macOS | [markdown-serve-v1.0.7-darwin-amd64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-darwin-amd64.d.tar.gz) | 4081725 |
-| macOS | [markdown-serve-v1.0.7-darwin-arm64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-darwin-arm64.d.tar.gz) | 3755741 |
-| Linux | [markdown-serve-v1.0.7-linux-amd64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-amd64.d.tar.gz) | 4009215 |
-| Linux | [markdown-serve-v1.0.7-linux-arm.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-arm.d.tar.gz) | 3847402 |
-| Linux | [markdown-serve-v1.0.7-linux-arm64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-arm64.d.tar.gz) | 3616308 |
-| raspberry | [markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz) | 3853932 |
-| raspberry | [markdown-serve-v1.0.7-raspberry-pi.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-raspberry-pi.d.tar.gz) | 3847409 |
-| Windows | [markdown-serve-v1.0.7-windows-386.d.zip](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-windows-386.d.zip) | 4110991 |
-| Windows | [markdown-serve-v1.0.7-windows-amd64.d.zip](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-windows-amd64.d.zip) | 4174606 |
+| macOS | [markdown-serve-v1.0.7-darwin-amd64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-darwin-amd64.d.tar.gz) | 4081748 |
+| macOS | [markdown-serve-v1.0.7-darwin-arm64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-darwin-arm64.d.tar.gz) | 3755762 |
+| Linux | [markdown-serve-v1.0.7-linux-amd64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-amd64.d.tar.gz) | 4009240 |
+| Linux | [markdown-serve-v1.0.7-linux-arm.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-arm.d.tar.gz) | 3847432 |
+| Linux | [markdown-serve-v1.0.7-linux-arm64.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-linux-arm64.d.tar.gz) | 3616334 |
+| raspberry | [markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz) | 3853964 |
+| raspberry | [markdown-serve-v1.0.7-raspberry-pi.d.tar.gz](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-raspberry-pi.d.tar.gz) | 3847437 |
+| Windows | [markdown-serve-v1.0.7-windows-386.d.zip](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-windows-386.d.zip) | 4111012 |
+| Windows | [markdown-serve-v1.0.7-windows-amd64.d.zip](https://github.com/muquit/markdown-serve/releases/download/v1.0.7/markdown-serve-v1.0.7-windows-amd64.d.zip) | 4174628 |
 
 ## Installation
 
@@ -25,15 +25,15 @@ executable to a directory in your `PATH`. You may rename it to
 ## Checksums
 
 ```text
-81405123141ed9aca64a6865e51071b33f5d3996ccc9c5bd2c06ca3875fda667  markdown-serve-v1.0.7-darwin-amd64.d.tar.gz
-3d12603e2b1bcbb178035cbc1a403f8050369a0d583e9a59fbbf188c409a0bd7  markdown-serve-v1.0.7-darwin-arm64.d.tar.gz
-189527c474ace270ad6e04734afd4cab61a9ff2200bbef2a6307c0e814fca141  markdown-serve-v1.0.7-linux-amd64.d.tar.gz
-0db6f3b60e8216a00d43edafee3115cabbcf6155b304fbb0c70564027a879ddc  markdown-serve-v1.0.7-linux-arm.d.tar.gz
-82ba2aedc20b5ba377aba47dcc5c22da8c4ec2208dc7fd602ae3408e8ca053a6  markdown-serve-v1.0.7-linux-arm64.d.tar.gz
-5247bf52083ec21565bbd2096b4a289c05b77fc5251b196f8d9068c1d8c6bd83  markdown-serve-v1.0.7-windows-386.d.zip
-9aafa4e238b3d70780e09c218d7a55a6fec27ca669a45c66d950c79685ae3573  markdown-serve-v1.0.7-windows-amd64.d.zip
-f1fcb40dbedc76f47ecc328abb10e712e966875ae1a92b36c9003a7793b857da  markdown-serve-v1.0.7-raspberry-pi.d.tar.gz
-356d4e0865201dc97e18ed0dfd0d66f1be1a936b2a5090b7940102170e05f763  markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz
+510d6c31177bdd4b15cb797fd9f1958a63cba1c9e57bbac967ed43791f0d6677  markdown-serve-v1.0.7-darwin-amd64.d.tar.gz
+d48e3c63dd962465ad1a62e320793bea1381e27192db4cc8e913da8ecf5beff3  markdown-serve-v1.0.7-darwin-arm64.d.tar.gz
+c32584eca3538c3e1f61bed1124aa153ff25a1c7265f0415144750aa7e2ae660  markdown-serve-v1.0.7-linux-amd64.d.tar.gz
+757fdb3d3714bfa68502ba3d15ea9e4911c8d570a0bc0a18e103578633fcf142  markdown-serve-v1.0.7-linux-arm.d.tar.gz
+ea8389274a54c61413d7fc0065ccfdc343b696cc107bc672c9888c88dfbe7de6  markdown-serve-v1.0.7-linux-arm64.d.tar.gz
+996acaf00d14bd417dc2f4886516272d1e3eb6bdc57576dbc286b8882b689e79  markdown-serve-v1.0.7-windows-386.d.zip
+6300871cb5c79324a173e65efa9699ae3288db63ac79a2150baf13e6fdee3bf3  markdown-serve-v1.0.7-windows-amd64.d.zip
+385d4c7e3ab14e8b0b14a22c70dbf22f952c7ea35f0c7e5236cf445c5c14a194  markdown-serve-v1.0.7-raspberry-pi.d.tar.gz
+0f1dee1cb5f8fd177df5310c6c5c53d066c9a82a44c567ed14248888006d889c  markdown-serve-v1.0.7-raspberry-pi-jessie.d.tar.gz
 ```
 
 ## Archive contents
