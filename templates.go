@@ -95,6 +95,19 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
     blockquote { margin: 0 0 16px; padding: 0 1em; color: #6a737d; border-left: 0.25em solid #dfe2e5; }
     blockquote > :first-child { margin-top: 0; }
     blockquote > :last-child { margin-bottom: 0; }
+    .markdown-alert { margin: 0 0 16px; padding: 8px 16px; border-left: 0.25em solid; }
+    .markdown-alert > :last-child { margin-bottom: 0; }
+    .markdown-alert-title { display: flex; align-items: center; gap: 8px; font-weight: 600; margin: 0 0 8px; }
+    .markdown-alert-note { border-left-color: #0969da; }
+    .markdown-alert-note .markdown-alert-title { color: #0969da; }
+    .markdown-alert-tip { border-left-color: #1a7f37; }
+    .markdown-alert-tip .markdown-alert-title { color: #1a7f37; }
+    .markdown-alert-important { border-left-color: #8250df; }
+    .markdown-alert-important .markdown-alert-title { color: #8250df; }
+    .markdown-alert-warning { border-left-color: #9a6700; }
+    .markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+    .markdown-alert-caution { border-left-color: #cf222e; }
+    .markdown-alert-caution .markdown-alert-title { color: #cf222e; }
     body.dark { background: #0d1117; color: #c9d1d9; }
     body.dark pre { background: #161b22; }
     body.dark a { color: #58a6ff; }
@@ -102,6 +115,16 @@ var docTmpl = template.Must(template.New("doc").Parse(`<!DOCTYPE html>
     body.dark th, body.dark td { border-color: #30363d; }
     body.dark th { background: #161b22; }
     body.dark blockquote { color: #8b949e; border-left-color: #30363d; }
+    body.dark .markdown-alert-note { border-left-color: #58a6ff; }
+    body.dark .markdown-alert-note .markdown-alert-title { color: #58a6ff; }
+    body.dark .markdown-alert-tip { border-left-color: #3fb950; }
+    body.dark .markdown-alert-tip .markdown-alert-title { color: #3fb950; }
+    body.dark .markdown-alert-important { border-left-color: #a371f7; }
+    body.dark .markdown-alert-important .markdown-alert-title { color: #a371f7; }
+    body.dark .markdown-alert-warning { border-left-color: #d29922; }
+    body.dark .markdown-alert-warning .markdown-alert-title { color: #d29922; }
+    body.dark .markdown-alert-caution { border-left-color: #f85149; }
+    body.dark .markdown-alert-caution .markdown-alert-title { color: #f85149; }
     body.dark .copy-btn { background: #21262d; color: #8b949e; border-color: rgba(240,246,252,0.1); }
     body.dark .copy-btn:hover { background: #30363d; }
     body.dark .copy-btn.copied { background: #238636; color: #fff; border-color: #238636; }

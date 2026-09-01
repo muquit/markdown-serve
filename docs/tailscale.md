@@ -6,4 +6,5 @@ devices directly to each other (peer-to-peer) whenever possible, which
 makes it extremely fast with minimal latency. There is nothing to
 configure: no port forwarding, no dynamic DNS, no firewall rules.
 
-Note: I am not affiliated with @TAILSCALE@ in any way, just a satisfied user.
+> [!NOTE]
+> I am not affiliated with @TAILSCALE@ in any way, just a satisfied user.

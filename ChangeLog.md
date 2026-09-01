@@ -1,4 +1,5 @@
 # Table Of Contents
+- [v1.0.7](#v107)
 - [v1.0.6](#v106)
 - [v1.0.5](#v105)
 - [v1.0.4](#v104)
@@ -6,6 +7,28 @@
 - [v1.0.2](#v102)
 - [v1.0.1](#v101)
 
+
+# v1.0.7
+
+* Add rendering support for github-style alerts (`[!NOTE]`, `[!TIP]`,
+  `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`).
+
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+
+(Aug-31-2026)
 
 # v1.0.6
 

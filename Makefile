@@ -10,6 +10,9 @@ all: build
 test:
 	go test ./...
 
+build_native:
+	go build $(BUILD_OPTIONS) $(LDFLAGS) -o $(BINARY) .
+
 build: clean
 	@echo ">>>> Compiling native binary ..."
 	go build $(BUILD_OPTIONS) $(LDFLAGS) -o $(BINARY) .

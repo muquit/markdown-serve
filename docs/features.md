@@ -3,7 +3,7 @@
 - Lists `.md` files as a collapsible tree (directories and files)
 - Renders Markdown as clean HTML
 - Syntax highlighting via @HIGHLIGHTJS@ loaded from CDN
-- GitHub-flavored Markdown extensions: tables, strikethrough, task lists, fenced code blocks, auto-heading IDs
+- GitHub-flavored Markdown extensions: tables, strikethrough, task lists, fenced code blocks, auto-heading IDs, alerts
 - Live reload via @SERVER_SENT_EVENTS@ when files change on disk (on by default)
 - Recursive directory support with empty directory pruning
 - Path traversal protection
